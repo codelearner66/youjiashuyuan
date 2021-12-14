@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="../bootstrap/css/bootstrap.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="../css/back_default.css" type="text/css">
+    <script src="../js/echarts.js" type="text/javascript"></script>
+    <script src="../js/jquery.js" type="text/javascript"></script>
+    <script src="../bootstrap/js/bootstrap.js" type="text/javascript"></script>
+</head>
+<body>
+<div class="container-fluid">
+    <div class="col-md-12" id="getmoney">
+        <!--今日收入-->
+        <div class="col-md-2  common" style="background-color: royalblue">
+            <span class="Tittle col-md-12">今日收入</span>
+            <span id="Tmoney" class="money col-md-10"> </span>
+            <span class="col-md-1  glyphicon glyphicon-yen" style="padding-left: 0px;line-height: 25px"></span>
+        </div>
+        <!--昨日收入-->
+        <div class="col-md-2  common" style="background-color: #0096c0" >
+            <span class="Tittle col-md-12">昨日收入</span>
+            <span id="Ymoney" class="money col-md-10"> </span>
+            <span class="col-md-1  glyphicon glyphicon-usd" style="padding-left: 0px; line-height: 25px"> </span>
+        </div>
+        <!--月累计收入-->
+        <div class="col-md-3  common" style="background-color: limegreen">
+            <span class="Tittle col-md-12">月累计收入</span>
+            <span id="Mmoney" class="money col-md-10">8000000</span>
+            <span class="col-md-1  glyphicon glyphicon-btc"></span>
+        </div>
+        <!--年总收入-->
+        <div class="col-md-3  common" style="background-color: tomato;margin-right: 0px;" >
+            <span class="Tittle col-md-12">年累计收入</span>
+            <span id="Yearmoney" class="money col-md-9">50000000</span>
+            <span class="col-md-2 col-md-offset-1 glyphicon glyphicon-rub"> </span>
+        </div>
+    </div>
+    <div class="col-md-12 " id="tu">
+        <span class="col-md-12" style="height: 40px; text-align: left; font-size: 20px;font-weight: 900;margin-top: 10px">收入增长趋势</span>
+        <div id="revenuetrend" class="col-md-12"><!--Echarts图表--></div>
+    </div>
+    <div id="Today_shop" class="col-md-12">
+        <span class="col-md-12" style="height: 40px; text-align: left; font-size: 20px;font-weight: 900;margin-top: 10px">未完成订单</span>
+        <div id="shop_table" style="height: 480px;" class="col-md-12">
+            <table class="table table-hover table-bordered">
+                <tr id="TitleTap">
+                    <th>序号</th>
+                    <th>订单编号</th>
+                    <th>杂志名称</th>
+                    <th>买家</th>
+                    <th>下单日期</th>
+                    <th>订单状态</th>
+                </tr>
+                <tr id="table_main"></tr>
+            </table>
+            <nav aria-label="...">
+                <ul class="pager">
+                    <li><a id="prepage" href="javascript:void(0)" onclick="PrePage()">上一页</a></li>
+                    <li><a id="nextpage" href="javascript:void(0)" onclick="NextPage()">下一页</a></li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+</div>
+<script>
+    //page设置分页的初始位置
+    //size设置分页每页的数据量
+    //maxpage表示总共有多少页
+    var page=0;
+    var pagesize=10;
+    var maxpage=10;
+    $(document).ready(function () {
+        $.ajax({
+            type: "post",
+            url: "BackServlet",
+            data: {
+                action:"getPageSum",
+                TableName:"shopping_cart",
+                size: 10
+            },
+            success(data) {
+                maxpage=data;
+            }
+        });
+        $.ajax({
+            type: "post",
+            url: " BackServlet",
+            data: {
+                action:"getTmoney"
+            },
+            success(data) {
+                console.log(data)
+                $("#Tmoney").text(data);
+            }
+        }),
+            $.ajax({
+                type: "post",
+                url: " BackServlet",
+                data: {
+                    action:"getYmoney"
+                },
+                success(data) {
+                    console.log(data)
+                    $("#Ymoney").text(data);
+                }
+            }),
+            $.ajax({
+                type:"post",
+                url:" BackServlet",
+                data:{
+                    action:"getYearmoney"
+                },
+                success(data){
+                    $("#Yearmoney").text(data);
+                }
+            }),
+            $.ajax({
+            type:"post",
+            url:" BackServlet",
+            data:{
+                action:"getMonthmoney"
+            },
+            success(data){
+                $("#Mmoney").text(data);
+            }
+        })
+        var mychars=echarts.init(document.getElementById("revenuetrend"));
+        window.onresize=function(){
+            mychars.resize();
+        };
+        option = {
+            backgroundColor: '#494949',
+            toolbox: { feature: { saveAsImage: {} } },
+            tooltip: {
+                trigger: 'axis'
+            },
+            title: {
+                text: '营收趋势',
+                left: 'center',
+                bottom: '5%',
+                textStyle: {
+                    color: '#fff',
+                    fontSize: 16,
+                },
+            },
+            grid: {
+                top: '20%',
+                left: '10%',
+                right: '10%',
+                bottom: '15%',
+                containLabel: true,
+            },
+            xAxis: {
+                type: 'category',
+                boundaryGap: false,
+                data: [],
+                axisLabel: {
+                    margin: 30,
+                    color: '#ffffff63',
+                },
+                axisLine: {
+                    show: false,
+                },
+                axisTick: {
+                    show: true,
+                    length: 25,
+                    lineStyle: {
+                        color: '#ffffff1f',
+                    },
+                },
+                splitLine: {
+                    show: true,
+                    lineStyle: {
+                        color: '#ffffff1f',
+                    },
+                },
+            },
+            yAxis: [
+                {
+                    type: 'value',
+                    position: 'right',
+                    axisLabel: {
+                        margin: 20,
+                        color: '#ffffff63',
+                    },
+
+                    axisTick: {
+                        show: true,
+                        length: 15,
+                        lineStyle: {
+                            color: '#ffffff1f',
+                        },
+                    },
+                    splitLine: {
+                        show: true,
+                        lineStyle: {
+                            color: '#ffffff1f',
+                        },
+                    },
+                    axisLine: {
+                        lineStyle: {
+                            color:  '#ffffff1f',
+                            width: 2,
+                        },
+                    },
+                },
+            ],
+            series: [
+                {
+                    name: '收入',
+                    type: 'line',
+                    smooth: true, //是否平滑曲线显示
+                    showAllSymbol: true,
+                    symbol: 'circle',
+                    symbolSize: 6,
+                    lineStyle: {
+                        normal: {
+                            color: '#fff', // 线条颜色
+                        },
+                    },
+                    label: {
+                        show: true,
+                        position: 'top',
+                        textStyle: {
+                            color: '#fff',
+                        },
+                    },
+                    itemStyle: {
+                        color: 'red',
+                        borderColor: '#fff',
+                        borderWidth: 3,
+                    },
+                    tooltip: {
+                        show: true,
+                    },
+                    areaStyle: {
+                        normal: {
+                            color: '#494949',
+                        },
+                    },
+                    data: [],
+                },
+            ],
+        };
+        mychars.setOption(option);
+        $.ajax({
+            type:'post',
+            url:"BackServlet",
+            data:{
+                action:"getreventrend"
+            },
+            success(data){
+                var parse = JSON.parse(data);
+                // console.log(parse);
+                var xdate=[];
+                var ydate=[];
+                var i=0;
+                for(;i<parse.length;i++){
+                    xdate.push(parse[i].dat);
+                    ydate.push(parseFloat( parse[i].money));
+                }
+                mychars.setOption({
+                    xAxis: {
+                        data:xdate
+                    },
+                    series: {data: ydate}
+                })
+            }
+        }),
+            $.ajax({
+                type:"post",
+                url:"BackServlet",
+                data:{
+                    action:"getshoppingcart",
+                    start:page,
+                    size:pagesize
+                },
+                success(data) {
+                    var parse = JSON.parse(data);
+                    var sta=$("#table_main");
+                    for(var i=parse.length-1;i>=0;i--){
+                        var t=i+1;
+                        var modle="<tr class='modlle'> "+ "      <td>"+t+"</td>\n" +
+                            "                    <td>"+parse[i].id+"</td>\n" +
+                            "                    <td>"+parse[i].name+"</td>\n" +
+                            "                    <td>"+parse[i].account+"</td>\n" +
+                            "                    <td>"+parse[i].date+"</td>\n" +
+                            "                    <td>"+parse[i].state+"</td>\n" +
+                            "                </tr>" ;
+                        sta.after(modle);
+                    }
+                    console.log(parse);
+                }
+            })
+    })
+    function PrePage(){
+        if(page>0){
+            $(".modlle").remove();
+            page=page-1;
+            getpages();
+        }
+        else{
+            $("#prepage").css("disabled","true");
+        }
+    }
+    function NextPage(){
+
+        if(page<maxpage-1){
+            $(".modlle").remove();
+            page=page+1;
+            getpages();
+        }
+        else{
+            $("#nextpage").css("disabled","true");
+        }
+    }
+    function getpages(){
+        $.ajax({
+            type:"post",
+            url:" BackServlet",
+            data:{
+                action:"getshoppingcart",
+                start:page,
+                size:pagesize
+            },
+            success(data) {
+                var parse = JSON.parse(data);
+                var sta=$("#table_main");
+                for(var i=parse.length-1;i>=0;i--){
+                    var t=i+1;
+                    var modle="<tr class='modlle'> "+ "      <td>"+t+"</td>\n" +
+                        "                    <td>"+parse[i].id+"</td>\n" +
+                        "                    <td>"+parse[i].name+"</td>\n" +
+                        "                    <td>"+parse[i].account+"</td>\n" +
+                        "                    <td>"+parse[i].date+"</td>\n" +
+                        "                    <td>"+parse[i].state+"</td>\n" +
+                        "                </tr>" ;
+                    sta.after(modle);
+                }
+                console.log(parse);
+            }
+        })
+    }
+
+</script>
+</body>
+</html>

@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- namespace属性是名称空间，必须唯一 -->
+<mapper namespace="com.shiyuan.dao.Back">
+    <update id="upDataBooks" parameterType="com.shiyuan.entity.Magazines">
+        update magazines
+        <set>
+            <if test="M_Name!=null and M_Name!=''">
+                M_Name=#{M_Name},
+            </if>
+            <if test="M_Price!=null and M_Price!=''">
+                M_Price=#{M_Price},
+            </if>
+            <if test="M_Type!=null and M_Type!=''">
+                M_Type=#{M_Type},
+            </if>
+            <if test="M_Cycle!=null and M_Cycle!=''">
+                M_Cycle=#{M_Cycle},
+            </if>
+            <if test=" M_Introduce!=null and  M_Introduce!=''">
+                M_Introduce =#{M_Introduce},
+            </if>
+            <if test="M_ImgUrl!=null and M_ImgUrl!=''">
+                M_ImgUrl=#{M_ImgUrl},
+            </if>
+        </set>
+        where M_Id=#{M_ID}
+    </update>
+    <delete id="deleteMagazinesById">
+        delete from magazines where M_Id=#{id}
+    </delete>
+    <!--	* 获取杂志信息-->
+    <!--	* @param start-->
+    <!--	* @param size-->
+    <!--	* @return-->
+    <select id="getManazines" resultType="com.shiyuan.entity.Magazines">
+        select a.M_Id        as M_ID,
+               a.M_Name      as M_Name,
+               a.M_Price     as M_Price,
+               b.T_Name      as M_Type,
+               c.C_Name      as M_Cycle,
+               a.M_Introduce as M_Introduce,
+               a.M_ImgUrl    as M_ImgUrl
+        FROM magazines a,
+             m_type b,
+             m_cycle c
+        where a.M_Type = b.T_Id
+             and a.M_Cycle = c.C_Id
+          limit #{start} , #{size}
+    </select>
+    <select id="getManazinesnull" resultType="com.shiyuan.entity.Magazines">
+        select   b.M_Id  as M_ID,
+                 b.M_Name  as M_Name,
+                 b.M_Price  as M_Price,
+                 c.T_Name  as M_Type,
+                 count(*) as M_Cycle ,
+                 sum(b.M_Price) as M_Introduce,
+                 b.M_ImgUrl as M_ImgUrl
+        from sell_from a,
+             magazines b,
+             m_type c
+        where b.M_Type = c.T_Id
+          and b.M_Id = a.F_M_Id
+        GROUP BY b.M_Id
+    </select>
+    <select id="getMagazinesByID" resultType="com.shiyuan.entity.Magazines">
+        select M_Id        as M_ID,
+               M_Name      as M_Name,
+               M_Price     as M_Price,
+               M_Type      as M_Type,
+               M_Cycle     as M_Cycle,
+               M_Introduce as M_Introduce,
+               M_ImgUrl    as M_ImgUrl
+        FROM magazines
+        where M_Id = #{id}
+    </select>
+    <!--获取总条数-->
+    <select id="getPagesSum" resultType="java.lang.Integer">
+        SELECT count(*)
+        from ${TableName}
+    </select>
+    <!--	 @param start-->
+    <!--	 @param size-->
+    <!--	 @return-->
+    <!--	 返回购物车表-->
+    <!--	 start分页的起始序号-->
+    <!--	  size分页的大小-->
+    <select id="getbackshoppingcart" flushCache="true" resultType="com.shiyuan.entity.back.BackShoppingCart">
+        select a.Pre_Id as id, b.M_Name as name, c.account as account, a.Pre_add_Date as date,a.Pre_state as state
+        from shopping_cart a, magazines b, users c
+        where a.Pre_M_Id=b.M_Id
+          and a.Pre_U_Id= c.account
+           limit #{start}, #{size}
+    </select>
+    <insert id="insertshoppingcart">
+             insert into shopping_cart (Pre_Id,Pre_M_Id,Pre_U_Id,Pre_add_date,Pre_state)
+             values(#{id},#{name},#{account},#{date},#{state})
+    </insert>
+    <!--当当天出售数据为0时报返回值为null的错误 -->
+    <select id="getTmoney" resultType="double">
+        select SUM(b.M_Price) as money
+        from sell_from a,
+             magazines b
+        where a.F_M_Id = b.M_Id and day (a.F_Date)= Day (#{date})
+    </select>
+
+    <select id="getYearmoney" resultType="java.lang.Double">
+        select SUM(b.M_Price) as money
+        from sell_from a,
+             magazines b
+        where a.F_M_Id = b.M_Id
+        GROUP BY YEAR (F_Date)
+    </select>
+
+    <select id="getMonthmoney" resultType="java.lang.Double">
+        select SUM(b.M_Price) as money
+        from sell_from a,
+             magazines b
+        where a.F_M_Id = b.M_Id
+          and DATE_FORMAT(a.F_Date, '%Y-%m') = DATE_FORMAT(now(), '%Y-%m')
+    </select>
+
+    <select id="checkadmin" flushCache="true" resultType="java.lang.Boolean">
+        SELECT count(*)
+        FROM admintable
+        WHERE Admin = #{admin}
+          AND passwd = #{passwd}
+    </select>
+
+    <select id="adminlogin" flushCache="true" resultType="com.shiyuan.entity.back.Admin">
+        SELECT *
+        FROM admintable
+        WHERE Admin = #{admin}
+          AND passwd = #{passwd}
+    </select>
+    <update id="setAdmin" parameterType="com.shiyuan.entity.back.Admin">
+        update admintable
+        <set>
+            <if test="passwd!=null and passwd!=''">
+                passwd=#{passwd},
+            </if>
+            <if test="limits!=null and limits > 0">
+                limits=#{limits},
+            </if>
+            <if test="headerImg!=null and headerImg!=''">
+                headerImg=#{headerImg},
+            </if>
+        </set>
+        where Admin=#{admin}
+    </update>
+    <select id="getAllAdmin" parameterType="int" resultType="com.shiyuan.entity.back.Admin">
+        SELECT *
+        FROM admintable
+         limit #{start}, #{size}
+    </select>
+    <delete id="deleteAdmin" parameterType="com.shiyuan.entity.back.Admin">
+        delete from admintable where Admin=#{admin}
+    </delete>
+    <insert id="insertAdmin" parameterType="com.shiyuan.entity.back.Admin">
+        insert into admintable
+        values (#{admin},#{passwd},#{limits},#{headerImg})
+    </insert>
+    <!--	获取 backRevenutrend数据-->
+    <!--	@return-->
+    <select id="getbackRevenutrend" flushCache="true" resultType="com.shiyuan.entity.back.BackRevenuetrend">
+        select a.F_Date as dat, sum(b.M_price) as money
+        from sell_from a,
+             magazines b
+        where a.F_M_Id = b.M_Id
+        group by a.F_Date
+        order by a.F_Date
+    </select>
+    <select id="getbackRevenutrendByID" parameterType="string" resultType="com.shiyuan.entity.back.BackRevenuetrend">
+        select a.F_Date as dat, sum(b.M_price) as money
+        from sell_from a,
+             magazines b
+        where a.F_M_Id = b.M_Id
+        and   a.F_M_Id=#{id}
+        group by a.F_Date
+        order by a.F_Date
+    </select>
+
+    <!--	 获取Echarts数据-->
+    <!--	 @return List<Echarts> -->
+    <select id="getEcharts" flushCache="true" resultType="com.shiyuan.entity.back.Echarts">
+        select a.F_BuyerId as name, sum(b.M_price) as dat
+        from sell_from a,
+             magazines b
+        where a.F_M_Id = b.M_Id
+        group by a.F_BuyerId
+        order by sum(b.M_price) desc limit 10
+    </select>
+    <select id="getSellFormByUserId" resultType="com.shiyuan.entity.back.SellFrom">
+        select a.F_Id, a.F_BuyerId, b.M_Name as F_M_Id, a.F_Date
+        from sell_from a,
+             magazines b
+        where a.F_M_Id = b.M_Id
+          and a.F_BuyerId = #{Id} limit #{start},10
+    </select>
+
+    <insert id="insertSellForm" >
+        INSERT INTO sell_from (`F_Id`, `F_BuyerId`, `F_M_Id`, `F_Date`)
+        VALUES (#{F_Id}, #{F_BuyerId}, #{F_M_Id}, #{F_Date})
+    </insert>
+    <select id="getHotTop100" flushCache="true" resultType="com.shiyuan.entity.back.BackRevenuetrend">
+        select b.M_Name as dat, sum(b.M_price) as money
+        from sell_from a,
+             magazines b
+        where a.F_M_Id = b.M_Id
+        group by a.F_M_Id
+        order by sum(b.M_price) desc limit 55
+    </select>
+    <select id="getSortNp" flushCache="true" resultType="com.shiyuan.entity.back.BackRevenuetrend">
+        select c.T_Name as dat, sum(b.M_Price) as money
+        from sell_from a,
+             magazines b,
+             m_type c
+        where b.M_Type = c.T_Id
+          and b.M_Id = a.F_M_Id
+        group by c.T_Name
+        order by sum(b.M_price) desc
+    </select>
+    <select id="getBack_strend" resultType="com.shiyuan.entity.back.BackRevenuetrend">
+        select a.F_Date as dat, sum(b.M_price) as money
+        from sell_from a,
+             magazines b
+        where a.F_M_Id = b.M_Id
+        and  b.M_Type=#{type}
+        group by a.F_Date
+        order by a.F_Date
+        limit 30
+    </select>
+
+
+    <insert id="setMagazine">
+        insert INTO magazines
+        VALUES (#{M_ID}, #{M_Name}, #{M_Price}, #{M_Type}, #{M_Cycle}, #{M_Introduce}, #{M_ImgUrl})
+    </insert>
+
+</mapper>

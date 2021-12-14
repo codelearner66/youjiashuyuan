@@ -1,0 +1,25 @@
+#showType{
+    height: 250px;
+}
+.checkbox{
+    font-size: 12px;
+}
+.checkbox-inline{
+    padding-left: 0;
+}
+#buttonP{
+    height: 40px;
+}
+#buttonofchecked{
+    padding-left: 0;
+   margin-left: 0;
+    font-size: 16px;
+    font-weight: bold;
+}
+#echarts{
+    height: 520px;
+}
+#Echart1{
+    margin-top: 20px;
+    height: 500px;
+}

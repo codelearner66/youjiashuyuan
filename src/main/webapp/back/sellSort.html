@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+  <script type="text/javascript" src="../js/echarts.js"></script>
+  <script type="text/javascript" src="../js/jquery.js"></script>
+  <link rel="stylesheet" href="../bootstrap/css/bootstrap.css">
+</head>
+<body>
+<div class="container-fluid">
+    <div class="top10 col-md-10" style="margin:0 auto; text-align: center;margin-top: 40px">
+        <h2>热销榜Top100</h2>
+    </div>
+  <div id="Echart1" style="height: 800px" class="col-md-12">
+
+  </div>
+    <div class="col-md-12" style="height: 1px;background-color: black"> </div>
+    <div class="top10 col-md-12" style="text-align: center;margin-top: 40px">
+        <h2>各类杂志销量占比图</h2>
+    </div>
+
+    <div id="Echart2" style="height: 700px" class="col-md-12">
+
+    </div>
+</div>
+
+<script>
+  $(document).ready(function() {
+    var myChart = echarts.init(document.getElementById("Echart1"));
+    window.onresize = function () {
+      myChart.resize();
+    };
+    // 绘制图表
+      option = {
+       //  backgroundColor: '#95e1d3',
+          tooltip: {
+              trigger: 'axis',
+              show: false,
+              axisPointer: {
+                  // 坐标轴指示器，坐标轴触发有效
+                  type: 'shadow', // 默认为直线，可选为：'line' | 'shadow'
+              },
+          },
+          legend: {
+              show: false,
+          },
+          grid: {
+              left: '2%',
+              right: '10%',
+              bottom: '2%',
+              top:"1%",
+              containLabel: true,
+          },
+          xAxis: [
+              {
+                  splitLine: {
+                      show: false,
+                  },
+                  type: 'value',
+                  show: false,
+              },
+          ],
+          yAxis: [
+              {
+                  splitLine: {
+                      show: false,
+                  },
+                  axisLine: {
+                      //y轴
+                      show: false,
+                  },
+                  type: 'category',
+                  axisTick: {
+                      show: false,
+                  },
+                  inverse: true,
+                  data: [],
+                  axisLabel: {
+                      color: '#3d8ba3',
+                      fontSize: 14,
+                  },
+              },
+          ],
+          series: [
+              {
+                  name: '销售额',
+                  type: 'bar',
+                  barWidth: 10, // 柱子宽度
+                  label: {
+                      show: true,
+                      position: 'right', // 位置
+                      color: '#0a6b9c',
+                      fontSize: 14,
+                      distance: 15, // 距离
+                      formatter: '{c} 元', // 这里是数据展示的时候显示的数据
+                  }, // 柱子上方的数值
+                  itemStyle: {
+                      barBorderRadius: [0, 20, 20, 0], // 圆角（左上、右上、右下、左下）
+
+                      color: new echarts.graphic.LinearGradient(
+                          1,
+                          0,
+                          0,
+                          0,
+                          [
+                              {
+                                  offset: 0,
+                                  color: 'rgba(110,154,238,0.94)',
+                              },
+                              {
+                                  offset: 1,
+                                  color: 'rgba(3,52,109,0.79)',
+                              },
+                          ],
+                          false
+                      ), // 渐变
+                  },
+                  data: [],
+              },
+          ],
+      };
+    myChart.setOption(option);
+    $.ajax({
+        type:"post",
+        url:"BackServlet",
+        data:{
+            action :"hotTop100"
+        },
+        success(data) {
+            let parse = JSON.parse(data);
+            var yData=[];
+            var sData=[];
+            var i=0;
+            if(parse.length>30){
+                $("#Echart1").css("height","900px")
+            }
+            for(;i<parse.length;i++){
+                yData.push(parse[i].dat);
+                sData.push(parseFloat(parse[i].money));
+            }
+            myChart.setOption({
+                yAxis: {
+                    data: yData
+                },
+                series: {
+                    data: sData
+                }
+            })
+        }
+    });
+     //职称结构取数
+      $.ajax({
+          type:"post",
+          url:"BackServlet",
+          data:{
+              action :"getSortNp"
+          },
+          success: function (data) {
+              let parse = JSON.parse(data);
+              console.log(parse)
+              var jssonstr=[];
+              var getsjjg = [];//
+              var getsjjgrs = [];//
+              for(var tt=0;tt<parse.length;tt++){
+                  var ttr={
+                      name:parse[tt].dat,
+                      value:parseFloat(parse[tt].money)
+                  };
+                  jssonstr.push(ttr);
+                  getsjjg.push(parse[tt].dat);
+                  getsjjgrs.push(parseFloat(parse[tt].money));
+              }
+              console.log(jssonstr);
+              var myChart2 = echarts.init(document.getElementById("Echart2"));
+              window.onresize = function () {
+                  myChart2.resize();
+              };
+              var syjgdata = [];
+              for (var i = 0; i < getsjjg.length; i++) {
+                  syjgdata.push({
+                      name: getsjjg[i],
+                      value: getsjjgrs[i]
+                  })
+              }
+            /*  var rich = {
+                  name: {
+                      color: "#666666",
+                      fontSize: 14,
+                      padding: [8, 30, 0, 30],
+                      fontWeight: '400',
+                      align: 'left'
+                  },
+                  value: {
+                      color: "#333",
+                      fontSize: 15,
+                      padding: [0, 30, 8, 30],
+                      fontWeight: '500',
+                      align: 'left'
+                  },
+                  percent: {
+                      color: "#FFF",
+                      align: 'right',
+                      fontSize: 15,
+                      fontWeight: '500',
+                      //padding: [0, 5]
+                  },
+                  hr: {
+                      borderColor: '#DFDFDF',
+                      width: '100%',
+                      borderWidth: 1,
+                      height: 0,
+                  },
+                  cir: {
+                      fontSize: 26,
+                  }
+              }
+//职称结构图表
+              var colorList = ['#507AFF', '#51D9A2', '#FFC371', '#797AFF','#f9ed69','#6a2c70','#f38181'];
+              option2 = {
+                  tooltip: {
+                      trigger: 'item'
+                  },
+                  legend: {
+                      orient: 'vertical',
+                      left: 'left'
+                  },
+                  series: [{
+                      itemStyle: {
+                          normal: {
+                              color: function(params) {
+                                 // return colorList[params.dataIndex]
+                                  return colorList[params.dataIndex%colorList.length];
+                              }
+                          }
+                      },
+                      type: 'pie',
+                      radius: ['0%', '70%'],
+                      center: ["50%", "50%"],
+                      label: {
+                          normal: {
+                              position: 'inner',
+                              formatter: params => {
+                                  return (
+                                      '{percent|' + params.percent.toFixed(0) + '%}'
+                                  );
+                              },
+                              rich: rich,
+                          }
+                      },
+                      data: syjgdata
+                  }, {
+                      itemStyle: {
+                          normal: {
+                              color: function(params) {
+                                //  return colorList[params.dataIndex]
+                                  return colorList[params.dataIndex%colorList.length];
+                              }
+                          }
+                      },
+                      type: 'pie',
+                      silent: true, //取消高亮
+                      radius: ['0%', '80%'],
+                      center: ["50%", "50%"],
+                      labelLine: {
+                          normal: {
+                              length: 30,
+                              length2: 0,
+                              lineStyle: {
+                                  color: 'transparent'
+                              }
+                          }
+                      },
+                      label: {
+                          normal: {
+
+                              formatter: params => {
+                                  return '{name|' + params.name + '}\n{hr|}\n{value|' + params.value + '元}';
+                              },
+                              rich: rich,
+                              padding: [2, 25, 0, 25]
+                          }
+                      },
+                      data: syjgdata,
+                      z: -1
+                  }, {
+                      itemStyle: {
+                          normal: {
+                              color: function(params) {
+                                 // return colorList[params.dataIndex]
+                                  return colorList[params.dataIndex%colorList.length];
+                              }
+                          }
+                      },
+                      type: 'pie',
+                      silent: true, //取消高亮
+                      radius: ['0%', '80%'],
+                      center: ["50%", "50%"],
+                      labelLine: {
+                          normal: {
+                              length: 30,
+                              length2: 0,
+                              lineStyle: {
+                                  color: 'transparent'
+                              }
+                          }
+                      },
+                      label: {
+                          normal: {
+                              formatter: params => {
+                                  return '\n{cir|●}\n';
+                              },
+                              rich: rich,
+                          }
+                      },
+                      data: syjgdata,
+                      z: -1
+                  }, {
+                      itemStyle: {
+                          normal: {
+                              color: '#F2F9F7'
+                          }
+                      },
+                      type: 'pie',
+                      silent: true, //取消高亮
+                      radius: ['0%', '80%'],
+                      center: ["50%", "50%"],
+                      hoverAnimation: false, //取消动画效果
+                      data: syjgdata,
+                      label: {
+                          normal: {
+                              show: false,
+                              position: 'inner',
+                              formatter: params => {
+                                  return (
+                                      '{percent|' + params.percent.toFixed(0) + '%}'
+                                  );
+                              },
+                              rich: rich,
+                          }
+                      },
+                      z: -1
+                  }]
+              };*/
+              option2 = {
+                  tooltip: {
+                      trigger: 'item',
+                      formatter: '{a} <br/>{b} : {c} ({d}%)'
+                  },
+                  toolbox: {feature: {saveAsImage: {type: 'png'}}},
+                  legend: {
+                      orient: 'vertical',
+                      left: 'left'
+                  },
+                  series: [
+                      {
+                          name: 'Access From',
+                          type: 'pie',
+                          radius: '70%',
+                          data: jssonstr,
+                          emphasis: {
+                              itemStyle: {
+                                  shadowBlur: 10,
+                                  shadowOffsetX: 0,
+                                  shadowColor: 'rgba(0, 0, 0, 0.5)'
+                              }
+                          }
+                      }
+                  ]
+              };
+              myChart2.setOption(option2);
+          }
+      });
+  })
+</script>
+</body>
+</html>

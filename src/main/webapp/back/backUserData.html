@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>backUserData</title>
+    <script src="../js/jquery.js"></script>
+    <script src="../bootstrap/js/bootstrap.js"></script>
+    <link href="../bootstrap/css/bootstrap.css" rel="stylesheet" type="text/css"/>
+    <link href="../css/backUserData.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<div class="container">
+     <div class="col-md-12" id="main">
+         <form name="selectData" action="javascript:void(0)" method="post" id="selectM" class="col-md-12">
+             <div class="form-group col-md-6 serachText">
+                 <input type="text" class="form-control" id="sercachbox" placeholder="请输入要查询的帐号...">
+             </div>
+             <div class="form-group col-md-1">
+                 <input type="button" class="btn-default  serachButtton" value="查询"/>
+             </div>
+         </form>
+         <div class="col-md-12">
+             <div id="shop_table" class="col-md-12">
+                 <table class="table table-hover table-bordered">
+                     <tr id="TitleTap">
+                         <th>序号</th>
+                         <th>订单编号</th>
+                         <th>杂志名称</th>
+                         <th>买家</th>
+                         <th>下单日期</th>
+                     </tr>
+                     <tr id="table_main"></tr>
+                 </table>
+                 <nav aria-label="...">
+                     <ul class="pager">
+                         <li><a id="prepage" href="javascript:void(0)" onclick="PrePage()">上一页</a></li>
+                         <li><a id="nextpage" href="javascript:void(0)" onclick="NextPage()">下一页</a></li>
+                     </ul>
+                 </nav>
+             </div>
+         </div>
+     </div>
+</div>
+<script>
+    //page设置分页的初始位置
+    //size设置分页每页的数据量
+    //maxpage表示总共有多少页
+    var page=0;
+    var pagesize=10;
+    var maxpage=10;
+    var userID;
+    $(".serachButtton").click(function (){
+        let val = $("#sercachbox").val();
+        if(val.length==0||val==null||val=='') {alert("输入为空！\n请仔细检查..."); return;}
+        userID=val;
+        $.ajax({
+            type:"post",
+            url:"BackServlet",
+            data:{
+                action:"getPageSum",
+                TableName:"sell_from",
+                size:pagesize
+            },
+            success(data){
+                maxpage=data;
+                console.log("maxpage");
+                console.log(maxpage);
+                $(".modlle").remove();
+                getpages();
+            }
+        })
+    })
+    function PrePage(){
+        if(page>0){
+            $(".modlle").remove();
+            page=page-1;
+            getpages();
+        }
+        else{
+            $("#prepage").css("disabled","true");
+        }
+    }
+    function NextPage(){
+
+        if(page<maxpage-1){
+            $(".modlle").remove();
+            page=page+1;
+            getpages();
+        }
+        else{
+            $("#nextpage").css("disabled","true");
+        }
+    }
+    function getpages(){
+        $.ajax({
+            type:"post",
+            url:"BackServlet",
+            data:{
+                action:"getSellFormByUserId",
+                start:page,
+                UserId:userID
+            },
+            success(data) {
+                var parse = JSON.parse(data);
+                var sta=$("#table_main");
+                for(var i=parse.length-1;i>=0;i--){
+                    var t=i+1;
+                    var modle="<tr class='modlle'> "+ "      <td>"+t+"</td>\n" +
+                        "                    <td>"+parse[i].f_Id+"</td>\n" +
+                        "                    <td>"+parse[i].f_M_Id+"</td>\n" +
+                        "                    <td>"+parse[i].f_BuyerId+"</td>\n" +
+                        "                    <td>"+parse[i].f_Date+"</td>\n" +
+                        "                </tr>" ;
+                    sta.after(modle);
+                }
+            }
+        })
+    }
+</script>
+</body>
+</html>

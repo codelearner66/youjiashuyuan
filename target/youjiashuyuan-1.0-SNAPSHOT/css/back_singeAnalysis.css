@@ -1,0 +1,16 @@
+#TitleTap{
+    background-color: #C3E7FF;
+}
+li{
+    margin-left: 20px;
+}
+#skippages{
+    width: 40px;
+    outline-color: #98b1d0;
+    outline-width: 1px;
+}
+#newpages ,#allpages{
+    border: 0;
+    font-size: 18px;
+    font-weight: 400;
+}

@@ -1,0 +1,132 @@
+.container-fluid{
+	padding-left: 0;
+	padding-right: 0;
+	 padding-top: 52px; 
+}
+#nav{
+	background-color: rgb(38, 50, 56);
+	line-height: 50px;
+	
+}
+#imgid{
+	width: 40px;
+	height: 40px;
+}
+#imgid img{
+	width: 40px;
+	height: 40px;
+}
+#button{
+	margin-top: 14px;
+	background-color: rgb(38, 50, 56);
+	border: 1px solid rgb(38, 50, 56);
+	outline: none;
+/*//消除默认点击边框效果*/
+}
+#button:hover{
+	background-color: rgb(38, 50, 56);
+	border: 1px solid rgb(38, 50, 56);
+	outline: none;
+/*//消除默认点击边框效果*/
+}
+
+.dropdown-menu{
+	background-color: rgba(211, 220, 248, 0.5);
+}
+#dropdownMenu1{
+	background-color: rgb(38, 50, 56);
+	border: 1px solid rgb(38, 50, 56);
+	outline: none;
+	/*消除默认点击边框效果*/
+}
+#dropdownMenu1:hover{
+	background-color: rgb(38, 50, 56);
+	border: 1px solid rgb(38, 50, 56);
+	outline: none;   /* //消除默认点击边框效果*/
+}
+#main{
+	padding-left: 0;
+	padding-right: 0;
+}
+#left_Nav{
+	background-color: rgb(69, 90, 100);
+	height: 900px;	
+}
+.nameDiv{
+	line-height: 30px;	
+	height: 40px;	
+	color: white;
+	padding: 0 0;
+}
+ .list{
+	padding: 0 0;
+	line-height: 25px;	
+}
+.list a{
+	padding: 0 0;
+	color: white;
+	line-height: 25px;
+	text-decoration: none;
+}
+.nameDiv span{
+	margin-top: 10px;	
+}
+.nameDiv a{
+	font-size: 15px;
+	color: white;
+}
+#right_main{
+	padding:0 0;
+}
+#right_main #right_all{
+	padding: 0 0;
+	height: 900px;
+	background-color: white;
+}
+#right_main #nav_sign{
+	padding: 0 0;
+	background: #094351;
+	height: 40px;
+}
+#right_main .fast_button{
+	color: white;
+	padding: 0 0;
+	height: 40px;
+	line-height: 40px;
+}
+#right_main #bqList{
+	padding: 0 0;
+
+}
+#bqList .bq{
+	height: 40px;
+	line-height: 40px;
+	padding: 0 0;
+	margin: auto 0;
+}
+.bq:hover{
+	background-color: rgba(48, 81, 119, 0.95);
+}
+#bqList .bqTitle{
+	color: white;
+	padding: 0 0;
+	margin-left: 7px;
+}
+#bqList .bqSgin{
+	color: white;
+	padding: 0 0;
+}
+#bqList .bqX{
+	font-size: 20px;
+	font-weight: 100;
+	padding: 0 0;
+}
+#iframeDiv{
+	height: 700px;
+	padding: 0 0;
+
+}
+#iframeDiv .ifram{
+	height: 860px;
+	padding: 0 0;
+}

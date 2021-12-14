@@ -1,0 +1,186 @@
+#all{
+	width:1400px;
+	/*height:500px;*/
+	margin:auto;
+	background-color:#FFFFFF;
+}
+#head{
+	height: 430px;
+	margin: auto;
+}
+#main{
+	width: 1200px;
+	height: 1110px;
+	margin: auto;
+}
+#buttom{
+	
+}
+
+
+#banner{
+	width: 1200px;
+	height: 40px;
+	margin: auto;
+	/*border: 1px solid gainsboro;*/
+}
+#word{
+	font-size: 8px;
+	float:left;
+	margin-top: 13px;
+}
+#nav{
+	float:right;
+	color: black;
+	font-size: 8px;
+	margin-top: 9px;
+}
+#menu{
+	list-style: none;
+	padding:0 0 0 100px;
+}
+li{
+	float: left;
+}
+a{
+	text-decoration: none;
+	margin:0 10px;
+	color:#000000;
+}
+a:hover{
+	color: black;
+	text-decoration: underline;
+}
+
+#content{
+	height: 100px;
+	width: 1200px;
+	margin: auto;
+}
+#conleft{
+	float:left;
+	margin-top: 34px;
+}
+#concen{
+	margin-left: 100px;
+	width:660px;
+	height: 40px;
+	float:left;
+	border: 6px solid darkblue;
+	margin-top: 27px;
+}
+#conright{
+	width: 123px;
+	height: 32px;
+	float:right;
+	font-size: 8px;
+	margin-top: 34px;
+	border: 1px solid gainsboro;
+}
+
+
+#mabanner{
+	width:1200px;
+	height: 113px;
+	margin: auto;
+	text-align: center;
+}
+#gs{
+	width: 263px;
+	height: 29px;
+	background-color: #058EAC;
+	margin-left: 337px;
+	margin-top: 60px;
+}
+#sy{
+	width: 263px;
+	height: 29px;
+	background-color: #F2F2F2;
+	margin-left: 600px;
+	margin-top: -29px;
+}
+#yw{
+	margin-top: 30px;
+	font-size: 10px;
+}
+
+#macenter{
+	width:1200px;
+	height:245px;
+	margin: auto;
+	text-align: center;
+}
+
+#mabuttom{
+	width: 1200px;
+	height: 750px;
+	margin: auto;
+	text-align: center;
+	background-color: #F5F5F5;
+}
+
+
+#buttom{
+	width: 1400px;
+	height: 180px;
+	background-color: #1c2b40;
+}
+#buleft{
+	width:776px;
+	height: 100px;
+	margin-left: 150px;
+}
+
+
+#ly{
+	width: 400px;
+	height: 36px;
+	border: 1px solid #7a7a7a;
+	font-size: 8px;
+	margin-top: 20px;
+}
+#yzm{
+	width: 200px;
+	height: 36px;
+	border: 1px solid #7a7a7a;
+	font-size: 8px;
+	margin-top: 20px;
+}
+
+
+
+/*ordersearch.html*/
+
+#ordermenu{
+	width: 150px;
+	height: 400px;
+	margin-top: 30px;
+	text-align: center;
+	font-size: 10px;
+	line-height: 40px;
+	border: 1px #eaeaea solid;
+	margin-left: 50px;
+}
+#orderdiv{
+	width: 968px;
+	float: right;
+	margin-top: -400px;
+}
+#orderdd{
+	width: 888px;
+	float: left;
+	border-bottom: 2px solid #e4e7ed;
+	margin-bottom: 10px;
+	font-size: 8px;
+}
+#orderdd span{
+	line-height: 40px;
+	margin-right: 40px;
+	float: left;
+}
+#ordertable{
+	float: left;
+	width: 886px;
+	border: 1px solid #eaeaea;
+	padding: 30px 0 10px;
+}

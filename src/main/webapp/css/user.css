@@ -1,0 +1,237 @@
+#top{
+    width: 100%;
+    height: 42px;
+    padding-top: 30px;
+    font-size: 12px;
+    color: #484848;
+    background-color: #FCFCFC;
+    border-bottom:2px solid   #737383
+}
+.nav a{
+    text-decoration: none;
+    outline: none;
+}
+
+#center{
+	margin-top: 10px;
+}
+#center02{
+	margin-top: 50px;
+	margin-left: auto;
+	margin-right: auto;
+	width: 1200px;
+	height: 700px;
+	
+}
+.left{
+	width: 180px;
+	height: 462px;
+	float: left;
+    margin-left: 24px;
+    width: 178px;
+    border: 1px solid #eaeaea;
+    padding-left: 0;
+   
+}
+.left a{
+    text-decoration: none;
+    outline: none;
+}
+.left_1{
+	width: 170px;
+	height: 50px;
+	font-size: 12px;
+	font-family: "微软雅黑";
+	text-align: center;
+	line-height: 50px;
+}
+.right{
+	width: 888px;
+	height: 400px;
+	margin-left: 30px;
+    padding-top: 0;
+	
+}
+.right_1{
+	border: 1px solid #eaeaea;
+	height: 186px;
+	border-right: 1px dashed #eaeaea;
+}
+.right1_img{
+	width: 300px;
+	height: 60px;
+	margin: 20px;
+	padding-left:20px;
+}
+.right1_img img{
+	width: 60px;
+	height: 60px;
+	border-radius: 50%;
+}
+.right1_vip{
+	width: 300px;
+	height: 40px;
+	margin: 20px;
+	padding-left: 20px;
+	text-align:left;
+	font-size: 15px;
+	color: #FF5722;
+}
+.right_2{
+	border: 1px solid #eaeaea;
+	height: 186px;
+	border-left: none;
+}
+.right2_text{
+	width: 300px;
+	height: 100px;
+	margin: 20px;
+	padding-left: 0px;
+	line-height: 25px;
+	text-align: left;
+	font-size: 15px;
+	color: #000000;
+}
+.right3{
+	width: 888px;
+	height: 96px;
+	margin-top: 20px;
+}
+.right3 img{
+	width: 868px;
+	height: 96px;
+}
+.right4{
+	width: 868px;
+	height: 96px;
+	margin-top: 20px;
+}
+.right4_1{
+	width: 100%;
+	height: 48px;
+	border: 1px solid #eaeaea;
+	background-color: #FCFCFC;
+}
+.right4_2{
+	width: 100%;
+	height: 48px;
+	border: 1px solid #eaeaea;
+	border-top: none;
+}
+.right5{
+	width: 868px;
+	height: 300px;
+	border: 1px solid #eaeaea;
+	
+}
+.right5_img{
+	width:330px;
+	height: 60px;
+	margin: 20px;
+	margin-bottom: 5px;
+	padding-left: 30px;
+}
+.right5_img img{
+	width: 60px;
+	height: 60px;
+	border-radius: 50%;
+}
+#but1:hover button{
+	background-color: #9d9d9d;
+}
+#but2:hover input{
+
+	background-color: #9d9d9d;
+}
+
+/*牛b的input样式V*/
+
+/*牛b的input样式A*/
+#form2 input{
+	margin-left: 0px;
+	border-radius: 2px;
+	border: 2px solid #4c3434;
+}
+.right6{
+	width: 350px;
+	height: 150px;
+	margin-left: 90px;
+	padding-bottom: 30px;
+	line-height: 40px;
+	font-size: 15px;
+}
+.right6 form{
+	margin-left: 50px;
+}
+.right6 input{
+	margin: 10px;
+	width: 150px;
+	height: 24px;
+}
+#bot{
+
+	width: 100%;
+	height: 180px;
+}
+#low_nav{
+	width: 100%;
+	height: 180px;
+	background-color: #1c2b40;
+}
+#low_main{
+	width: 60%;
+	height: 180px;
+	margin: 0 auto;
+
+}
+.low_nav_left{
+	width: 65%;
+	height: 180px;
+	float: left;
+}
+.foot_img{
+	width: 35%;
+	height: 70px;
+	float: left;
+}
+.foot_nav{
+	width: 60%;
+	height: 30px;
+	float: right;
+	margin-top: 30px;
+}
+.foot_nav1{
+	width: 16%;
+	height: 30px;
+	font-size: 12px;
+	color: white;
+	float: right;
+	margin-left: 5px;
+	text-align: center;
+}
+.foot_nav1 a{
+	color: white;
+	text-decoration: none;
+}
+.foot_nav1 a:hover{
+	color: #ffc080;
+}
+.low_nav_right{
+	float: left;
+}
+.hr1{
+	clear: both;
+	width: 100%;
+	height: 15px;
+	border-bottom: 1px solid gainsboro;
+}
+.foot_text{
+	width: 100%;
+	text-align: center;
+	height: auto;
+}
+.foot_text p{
+	color: white;
+	font-size: 12px;
+	font-weight: 200;	
+}

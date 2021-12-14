@@ -1,0 +1,29 @@
+#mainTable{
+    position: relative;
+}
+#TableHidden{
+    display: none;
+    position: absolute;
+    margin-top: 5%;
+    left: 25%;
+    text-align: center;
+    background-color: rgb(247, 245, 245);
+    z-index: 100;
+    border-radius: 15px;
+    box-shadow: slategray;
+}
+#mainShow{
+    position: absolute;
+    height: 300px;
+}
+#TitleTap{
+    background-color: #C3E7FF;
+}
+#zazhiF{
+    width: 100px;
+    height: 140px;
+}
+th,td{
+    font-size: 14px;
+    text-align: center;
+}

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.shiyuan.dao.MainDao"> <!-- 一般为数据表在持久层对应接口的完整路径 -->
+
+    <!-- 查询数据表中所有数据,这相标签的id值要与数据表对应接口中的查询方法的名称要一样 -->
+
+    <select id="selectData"  resultType="com.shiyuan.entity.Magazines" >
+
+        /*select * from magazines*/
+        select a.M_Id as M_ID ,a.M_Name as M_Name  ,a.M_Price as M_Price ,b.T_Name as M_Type ,c.C_Name as M_Cycle, a.M_Introduce as M_Introduce,
+            a.M_ImgUrl as M_ImgUrl FROM magazines a ,m_type b,m_cycle c where a.M_Type=b.T_Id and a.M_Cycle=c.C_Id
+    </select>
+   <select id="findTotalCount" resultType="Integer" >
+       select count(*) from magazines where M_Type = #{type}
+
+   </select>
+    <select id="findByPage" parameterType="int"  resultType="com.shiyuan.entity.Magazines" >
+        select a.M_Id as M_ID ,a.M_Name as M_Name  ,a.M_Price as M_Price ,b.T_Name as M_Type ,c.C_Name as M_Cycle, a.M_Introduce as M_Introduce,
+               a.M_ImgUrl as M_ImgUrl FROM magazines a ,m_type b,m_cycle c   where a.M_Type=b.T_Id and a.M_Cycle=c.C_Id
+                and M_Type=#{type} LIMIT #{start},#{rows}
+
+    </select>
+</mapper>

@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <script type="text/javascript" src="../js/echarts.js"></script>
+    <script type="text/javascript" src="../js/jquery.js"></script>
+    <link rel="stylesheet" href="../bootstrap/css/bootstrap.css">
+    <style>
+        #Echart1{
+            height: 500px;
+        }
+    </style>
+</head>
+<body>
+<div class="container-fluid">
+    <div id="Echart1" class="col-md-12">
+
+    </div>
+</div>
+
+
+<script>
+    $(document).ready(function(){
+        var myChart = echarts.init(document.getElementById("Echart1"));
+        window.onresize=function(){
+            myChart.resize();
+        };
+        // 绘制图表
+        var option = {
+            title: {text: "前十消费统计图"},
+            toolbox: {feature: {saveAsImage: {type: 'png'}}},
+            backgroundColor: '#fff',
+            tooltip: {
+                trigger: 'item',
+            },
+            grid: {
+                left: '5%',
+                top: '10%',
+                right: '5%',
+                bottom: '10%',
+            },
+            legend: {
+                show: true,
+                icon: 'circle',
+                orient: 'horizontal',
+                top: '90.5%',
+                right: 'center',
+                itemWidth: 16.5,
+                itemHeight: 6,
+                // itemGap: 30,
+                textStyle: {
+                    // color: '#FFFFFF'
+                    color: '#C9C8CD',
+                    fontSize: 14
+                }
+            },
+            xAxis: [{
+                data: [],
+                axisLabel: {
+                    textStyle: {
+                        color: '#38455D',
+                        fontSize: 12
+                    },
+                    margin: 30, //刻度标签与轴线之间的距离。
+                },
+
+                axisLine: {
+                    show: true, //不显示x轴
+                    lineStyle: {
+                        color: '#E2E8EC'
+                    }
+                },
+                axisTick: {
+                    show: false //不显示刻度
+                },
+                boundaryGap: true,
+                splitLine: {
+                    show: false,
+                    width: 0.08,
+                    lineStyle: {
+                        type: "solid",
+                        color: "#03202E"
+                    }
+                }
+            }],
+            yAxis: [{
+                splitLine: {
+                    show: true,
+                    lineStyle: {
+                        color: '#E2E8EC',
+                        type: 'dashed'
+                    }
+                },
+                axisTick: {
+                    show: false
+                },
+                axisLine: {
+                    show: true,
+                    lineStyle: {
+                        color: "#E2E8EC"
+                    }
+                },
+                axisLabel: {
+                    textStyle: {
+                        color: '#38455D',
+                        fontSize: 12
+                    },
+                }
+            }],
+            series: [
+                {//柱底圆片
+                    name: "",
+                    type: "pictorialBar",
+                    symbolSize: [60, 20],//调整截面形状
+                    symbolOffset: [0, 10],
+                    z: 12,
+                    itemStyle: {
+                        "normal": {
+                            color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
+                                offset: 0,
+                                color: "#02D6EA"
+                            },
+                                {
+                                    offset: 1,
+                                    color: "#02D6EA"
+                                }
+                            ], false)
+                        }
+                    },
+                    data: []
+                },
+
+                //柱体
+                {
+                    name: '',
+                    type: 'bar',
+                    barWidth: 60,
+                    barGap: '0%',
+                    itemStyle: {
+                        "normal": {
+                            "color": {
+                                "x": 0,
+                                "y": 0,
+                                "x2": 0,
+                                "y2": 1,
+                                "type": "linear",
+                                "global": false,
+                                "colorStops": [{//第一节下面
+                                    "offset": 0,
+                                    "color": "#057DFE"
+                                }, {
+                                    "offset": 1,
+                                    "color": "#02D7EA"
+                                }]
+                            }
+                        }
+                    },
+
+                    data: []
+                },
+
+                //柱顶圆片
+                {
+                    name: "",
+                    type: "pictorialBar",
+                    symbolSize: [60, 20],//调整截面形状
+                    symbolOffset: [0, -10],
+                    z: 12,
+                    symbolPosition: "end",
+                    "itemStyle": {
+                        "normal": {
+                            color: new echarts.graphic.LinearGradient(0, 0, 0, 1,
+                                [{
+                                    offset: 0,
+                                    color: "#50A7FF"
+                                },
+                                    {
+                                        offset: 1,
+                                        color: "#02D6EA"
+                                    }
+                                ],
+                                false
+                            ),
+                        }
+                    },
+                    data: []
+                }
+            ]
+        };
+        myChart.setOption(option);
+        $.ajax( {
+            type:"post",
+            url: "BackServlet",
+            data:{
+                action:"Echart"
+            },
+            success(data){
+                var xdate=[];
+                var ydate=[];
+                var da=JSON.parse(data);
+                var i=0;
+                for(;i<da.length;i++){
+                    xdate.push(da[i].name);
+                    ydate.push(parseFloat(da[i].dat));
+                }
+                myChart.setOption({
+                    xAxis: {
+                        data:xdate
+                    },
+                    series: [
+                        {data: ydate},
+                        {
+                        data:ydate,
+                        },
+                        {data:ydate}
+                    ]
+                })
+            }
+        });
+    })
+</script>
+</body>
+</html>

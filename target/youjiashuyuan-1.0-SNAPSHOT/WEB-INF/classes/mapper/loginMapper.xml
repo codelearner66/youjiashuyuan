@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- namespace属性是名称空间，必须唯一 -->
+<mapper namespace="com.shiyuan.dao.Login">
+
+	<select id="getUser" resultType="java.lang.Integer">
+		select count(*) from users where account=#{account} and passwd=#{passwd}
+	</select>
+	<select id="Checkaccount" resultType="java.lang.Boolean">
+		select count(*) from users
+		    <where>
+				<if test="account != null and account != ''">
+					account=#{account}
+				</if>
+				<if test="passwd != null and passwd != ''">
+				and 	passwd=#{passwd}
+				</if>
+			</where>
+
+	</select>
+	<insert id="addUser">
+		insert into users (account,passwd) values (#{account},#{passwd})
+	</insert>
+	<delete id="deleteUser"  >
+		delete from users where account=#{account}
+	</delete>
+	<select id="getUserAll" resultType="com.shiyuan.entity.User">
+		select * from users where account=#{account} and passwd=#{passwd}
+	</select>
+	<select id="selectUser" resultType="com.shiyuan.entity.User">
+		select * from users
+	</select>
+</mapper>

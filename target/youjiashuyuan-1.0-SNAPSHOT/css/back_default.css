@@ -1,0 +1,31 @@
+body{
+    margin: 0px;
+    padding: 0px;
+}
+#getmoney{
+    margin-top: 10px;
+}
+.common{
+    text-align: left;
+    height: 100px;
+    color: white;
+    margin-left: 20px;
+    margin-right: 30px;
+}
+.Tittle{
+    margin-top: 20px;
+}
+.money{
+    font-size: 25px;
+    font-weight: 900;
+    font-family: "Adobe 黑体 Std R", serif;
+}
+#tu{
+    height: 600px;
+}
+#revenuetrend{
+    height: 550px;
+}
+#TitleTap{
+    background-color: #C3E7FF;
+}

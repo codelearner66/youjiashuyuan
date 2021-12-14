@@ -1,0 +1,350 @@
+body{
+	margin: 0 0;
+	padding: 0 0;
+}
+#all_page{
+	width: 100%;
+	height: auto;
+}
+#header{
+	width: 100%;
+	height: 40px;
+	background-color: white;
+}
+#header_main{
+	width: 50%;
+	height: 40px;
+	margin: 0 auto;
+	font-size: 15px;
+	font-weight: 200;
+	
+}
+.hello{
+	width: 30%;
+	height: 40px;
+	line-height: 40px;
+	float: left;
+}
+.header_nav{
+	width: 30%;
+	height: 40px;
+	line-height: 40px;
+	float: right;
+	text-align: right;
+	
+}
+.header_nav a{
+	color: #000000;
+	text-decoration: none;
+}
+#main{
+	width: 100%;
+	height: 868px;
+	background-image: url(../img/login.jpg);
+	background-size: 100% 868px;
+}
+#main_header{
+	width: 100%;
+	height:150px;
+}
+#main_context{
+	width: 50%;
+	height: 150px;
+	margin: 0 auto;
+}
+.empty{
+	width: 100%;
+	height:60px ;
+}
+.logo{
+	width: 152px;
+	height:45px ;	
+}
+.span1{
+	font-size: 35px;
+	font-family: "隶书";
+	font-weight: 500;
+	color: white;
+	letter-spacing: 3px;
+}
+.span2{
+	font-size: 15px;
+	font-family: "隶书";
+	font-weight: 200;
+	color: white;
+}
+.login_nav{
+	width: 24%;
+	height:40px ;
+	float: right;
+}
+.empty2{
+	width: 100%;
+	height: 20px;
+}
+.nav_to_forget{
+	width: 100%;
+	height: auto;
+	text-decoration: none;
+	font-size: 13px;
+	font-weight: 200;
+	color: white;
+	text-align: right;
+}
+.nav_to_forget a{
+	text-decoration: none;
+	color: white;
+}
+#main_form{
+	width: 100%;
+	height: 445px;
+}
+#form_context{
+	width: 50%;
+	height: 445px;
+	border: 1px solid white;
+	border-radius: 8px;
+	background-color: white;
+	margin: 0 auto;
+}
+#form_left{
+	width: 60%;
+	height: 445px;
+	float: left;
+}
+#form_left .h_text{
+	width: 70%;
+	height: 55px;
+	font-size: 34px;
+	font-weight: 400;
+	margin: 0 auto;
+	font-family: "楷体";
+	letter-spacing: 4px;
+	text-align: center;
+	line-height: 55px;
+}
+#form_left .form_1{
+	width: 70%;
+	height: 365px;
+	margin: 0 auto;
+}
+.form_1 input{
+	margin-top: 30px;
+	display: block;
+	width: 100%;
+	height: 35px;
+	border: 1px solid lightgray;
+	line-height: 40px;
+	outline:0;
+	
+}
+.form_1 input::-webkit-input-placeholder{ 
+    color: #d3d3d3;
+}
+.yuanxheng{
+	margin-top: 30px;
+	width: 100%;
+	height: 35px;	
+}
+.form_1 #yanzhengma{
+	margin: 0 0;
+	width: 40%;
+	float: left;
+}
+.form_1 #button{
+	margin: 0  5px;
+	width: 55%;
+	float: left;
+	height: 40px;
+	line-height: 40px;
+}
+.form_1 .passwd{
+	clear: both;
+	background: url(../img/bg_mima.jpg) right no-repeat;
+	background-position: 96% 7px;
+}
+ .submit{
+	border-radius: 5px;
+	background-color: red;
+	font-size: 25px;
+	font-family: "微软雅黑 ";
+	color: white;
+	vertical-align:middle;
+	text-align: center;
+	 line-height: 25px;
+}
+.form_1 .find_mima{
+	margin-top: 15px;
+	width: 30%;
+	height: 30px;
+	float: right;
+  line-height: 30px;
+}
+.form_1 .find_mima a{
+	text-align: right;
+	text-decoration: none;
+	color: darkgray;
+}
+ .check{
+	margin-top: 50px;
+	width: 100%;
+	height: 30px;
+	font-size: 12px;
+}
+ .check span{
+	width: 80%;
+	height: 30px;
+}
+ .form_1 .checkbox{
+	display: inline;
+	width: 15px;
+	height: 15px;
+    margin: 0 0;	
+}
+#form_right{
+	width: 40%;
+	height: 445px;
+	background-color: #f4f4f4;
+	border-radius:0 8px 8px 0 ;
+	float: right;
+}
+#form_right .empty3{
+	width: 100%;
+	height: 120px;
+}
+#form_right .right_context{
+	text-align: center;
+	color: gray;
+	font-size: 13px;	
+}
+#form_right .hr{
+	width: 95%; 
+	size: 1px;
+	border-bottom: 1px dashed gray;
+	height: 5px;
+	margin: 0 auto;
+}
+#form_right .logo_div{
+	width: 100%;
+	height: 70px;
+	margin-top: 15px;
+}
+#form_right .qq{
+	width: 42%;
+	height: 70px;
+	float: left;
+	margin-left: 5%;
+	border: 1px solid white;
+	border-radius: 5px;
+	background-color: #e5e4e4;
+	float: left;
+}
+.qq .qq_span{
+	width: 60px;
+	height: 60px;	
+}
+.qq_span a img{
+	width: 55px;
+	height: 55px;
+	border-radius: 55px;
+	margin-top: 7px;
+	margin-left: 4px;	
+}
+.qq .qq_span1{
+	width: 60px;
+	height: 20px;
+	margin-top: 20px;
+	float: right;
+}
+.qq #qq_nav{
+	width: 60px;
+	height: 20px;
+	font-size: 12px;
+	text-decoration: none;
+}
+#form_right .weixin{
+	width: 42%;
+	height: 70px;
+	float: right;
+	margin-right: 5%;
+	border-radius: 5px;
+	background-color: #e5e4e4;
+}
+.weixin .weixin_span{
+	width: 60px;
+	height: 60px;	
+}
+.weixin_span a img{
+	width: 55px;
+	height: 55px;
+	border-radius: 55px;
+	margin-top: 7px;
+	margin-left: 4px;	
+}
+.weixin .weixin_span1{
+	width: 60px;
+	height: 20px;
+	margin-top: 20px;
+	float: right;
+}
+.weixin #weixin_nav{
+	width: 60px;
+	height: 20px;
+	font-size: 12px;
+	text-decoration: none;
+}
+#low_nav{
+	width: 100%;
+	height: 180px;
+	background-color: #1c2b40;
+}
+#low_main{
+	width: 60%;
+	height: 180px;
+	margin: 0 auto;
+
+}
+.low_nav_left{
+	width: 65%;
+	height: 180px;
+	float: left;
+}
+.foot_img{
+	width: 35%;
+	height: 70px;
+	float: left;
+}
+.foot_nav{
+	width: 60%;
+	height: 30px;
+	float: right;
+	margin-top: 30px;
+	color: white;
+}
+.foot_nav1{
+	width: 16%;
+	height: 30px;
+	font-size: 12px;
+	color: gainsboro;
+	float: right;
+	margin-left: 5px;
+}
+.foot_nav1 a{
+	text-decoration: none;
+	color: white;
+}
+.hr1{
+	clear: both;
+	width: 100%;
+	height: 15px;
+	border-bottom: 1px solid gainsboro;
+}
+.foot_text{
+	width: 100%;
+	height: auto;
+}
+.foot_text p{
+	font-size: 12px;
+	font-weight: 200;	
+	color: #fff;
+}
