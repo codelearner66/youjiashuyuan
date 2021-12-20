@@ -157,7 +157,7 @@
         </div>
     </div>
 </div>
-<div style="width: 100%;float: left;margin-bottom: 30px">
+<div style="width: 100%;float: left;margin-bottom: 279px">
     <div id="cartcon">
     <%--购物车头部--%>
     <div style="width: 100%;height: 44px;background-color: #F5F5F5;border: 1px solid #EBEBEB;margin-bottom: 20px;float: left">
