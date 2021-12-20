@@ -43,5 +43,7 @@
         <mapper resource="mapper/backMapper.xml"/>
         <mapper resource="mapper/loginMapper.xml"/>
         <mapper resource="mapper/userMapper.xml"/>
+        <mapper resource="mapper/MTypeMapper.xml"/>
+        <mapper resource="mapper/shopCartMapper.xml"/>
     </mappers>
 </configuration>

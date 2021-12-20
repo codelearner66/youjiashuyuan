@@ -1,0 +1,384 @@
+body{
+	margin: 0;
+}
+#top{
+	width: 100%;
+	height: 550px;
+}
+#top a{
+	text-decoration: none;
+}
+.indexsearch2{
+	width: 730px;
+	height: 57px;
+	margin-top: 28px;
+	margin-right: 20px;
+	background-image: url(../img/bgsearch2.jpg);
+	float: right;
+}
+.mycart{
+	width: 125px;
+	height: 35px;
+	border: 1px solid #C0C4CC;
+	background-color: #F9F9F9;
+	margin-top: 38px;
+	margin-left: 30px;
+	line-height: 35px;
+}
+.mycart i {
+    display: inline-block;
+    background: url(../img/cart_2.png) no-repeat;
+    width: 17px;
+    height: 13px;
+    margin: 0 13px 0 10px;
+}
+#test10 img{
+	width: 100%;
+	height: 400px;
+}
+
+/*主体*/
+#center{
+	width: 100%;
+	height: 800px;
+	margin-top: 10px;
+	background-color: white;
+}
+.nav1{
+	width: 1200px;
+	height: 42px;
+	margin:10px auto;
+    border: 1px solid #ececec;
+    font-size: 14px;
+    line-height: 42px;
+}
+.nav2{
+	width: 1200px;
+	height: 120px;
+	margin:10px auto;
+    border: 1px solid #ececec;
+    font-size: 12px;
+    
+}
+.nav2 a{
+	
+	text-decoration: none;
+	line-height: 24px;
+    color: #fff;
+}
+.nav2 span{
+	float: left;
+    margin: 0 5px;
+    margin-bottom: 5px;
+    line-height: 24px;
+}
+.nav2 a{
+	padding: 0 12px;
+    display: block;
+    color: #101010;
+}
+.nav2 span:hover a{
+	background-color:#809eae ;
+	color: white;
+}
+
+.nav3{
+	width: 1200px;
+	height: 50px;
+	margin: 10px auto;
+	border: 1px solid #ececec;
+	font-size: 12px;
+}
+.nav3 a{
+	padding: 0 12px;
+    display: block;
+    color: #101010;
+}
+.nav3 span{
+	float: left;
+    margin: 0 5px;
+    margin-top: 3px;
+    margin-bottom: 5px;
+    line-height: 24px;
+}
+.nav3 span:hover a{
+	background-color:#809eae ;
+	color: white;
+}
+
+.main{
+	width: 1198px;
+	height: auto;
+	margin: 0 auto;
+	margin-top: 20px;
+	
+}
+.main table{
+	width: 100%;
+	height: auto;
+}
+.main .button{
+	width:70px;
+	height: 25px;
+	line-height: 25px;
+	color: white;
+	border: 0;
+	border-radius: 2px;
+	background-color: #008EB7;
+}
+.main .th{
+	height: 22px;
+	line-height: 22px;
+	padding-bottom: 5px;
+	font-size: 14px;
+	font-weight: bold;
+	color: #000000;
+	text-align: center;
+	border-bottom: 2px solid #008EB7;
+}
+.main .tr{
+	background-color:#EDEDED;
+	text-align: center;
+	height: auto;
+}
+.main .td{
+	height: 40px;
+	line-height: 20px;
+	font-size: 13px;
+	color: #000000;
+}
+.magazine_fromtion{
+	width: 1198px;
+	height: 250px;
+	line-height: 30px;
+	margin-left: 0px;
+	background-color: white;
+	color: #ef9494;
+	border: 1px solid #058EAC;
+	text-align: center;
+	font-weight: bold;
+	font-size: 15px;
+	font-family: 微软雅黑;
+    display: none;
+	position:absolute
+}
+.td2{
+	width: 100%;
+}
+/*#fenye_div{
+	width: auto;
+	height: 50px;
+	margin: 0 auto;
+	margin-top: 150px;
+}*/
+/*分页样式*/
+.fenye{
+	margin-top: 20px;
+	text-align: center;
+	background-color: white;
+}
+
+.fenye ul.pagination {
+	display: inline-block;
+	padding: 0;
+	margin: 0;
+}
+
+.fenye ul.pagination li {display: inline;}
+
+.fenye ul.pagination li a {
+	color: black;
+	float: left;
+	padding: 8px 16px;
+	text-decoration: none;
+	transition: background-color .3s;
+	border: 1px solid #ddd;
+	border-radius: 50px;
+	margin: 5px;
+}
+
+.fenye ul.pagination li a.active {
+	background-color:  #8A2BE2;
+	color: white;
+	border: 1px solid #8A2BE2;
+
+}
+
+.fenye ul.pagination li a:hover:not(.active) {background-color: #ddd;}
+/*购物车主体*/
+#cartcon{
+	width: 1090px;
+	/*height: 800px;*/
+	margin: 0 auto;
+	margin-top: 20px;
+	margin-bottom: 300px;
+	background-color: white;
+}
+#cartcon .overhover{
+	display: inline-block;
+	background: #cc9756;
+	width: 14px;
+	height: 14px;
+	border-radius: 1px;
+	vertical-align: middle;
+	margin-right: 5px;
+	margin-bottom: 2px;
+	cursor: pointer;
+}
+.cart1{
+	width: 158px;
+	height: 44px;
+	padding-left: 37px;
+	float: left;
+	font-size: 14px;
+	color: #000;
+	line-height: 44px;
+}
+.cart2{
+	width: 158px;
+	height: 68px;
+	padding-left: 37px;
+	float: left;
+	font-size: 14px;
+	color: #000;
+	line-height: 68px;
+}
+.cartdy{
+	ont-size: 12px;
+	color: #cc9756;
+}
+.addcartdy{
+	width: 150px;
+	height: 68px;
+	margin-left: 20px;
+	line-height: 68px;
+	float: left;
+	font-size: 14px;
+	color: #000000;
+}
+.price{
+	width: 80px;
+	height: 68px;
+	line-height: 68px;
+	font-size: 14px;
+	color: #000000;
+	float: left;
+}
+#cartcon ul{
+	display: block;
+	list-style-type: disc;
+	margin-block-start: 1em;
+	margin-block-end: 1em;
+	margin-inline-start: 0px;
+	margin-inline-end: 0px;
+	padding-inline-start: 40px;
+}
+.cartlist li{
+	float: left;
+	border: 1px solid #dddddd;
+	height: 68px;
+	background: #fffbf0;
+	width: 1090px;
+	float: left;
+	margin-bottom: 10px;
+	margin-left: -40px;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	font-size: 14px;
+}
+.butjian{
+	background: url(../img/jian.png) no-repeat;
+	width: 22px;
+	height: 22px;
+	border: 1px solid #a4a4a4;
+	cursor: pointer;
+	vertical-align: top;
+}
+.txtshu{
+	width: 60px;
+	height: 20px;
+	vertical-align: middle;
+	border: 0;
+	border-bottom: 1px solid #a4a4a4;
+	border-top: 1px solid #a4a4a4;
+	text-align: center;
+	vertical-align: top;
+	font-size: 14px;
+}
+.butjia{
+	background: url(../img/jia.png) no-repeat;
+	width: 22px;
+	height: 22px;
+	border: 1px solid #a4a4a4;
+	cursor: pointer;
+	vertical-align: top;
+}
+/*尾部*/
+#bot{
+    float: left;
+	width: 100%;
+	height: 180px;
+}
+#low_nav{
+	width: 100%;
+	height: 180px;
+	background-color: #1c2b40;
+}
+#low_main{
+	width: 60%;
+	height: 180px;
+	margin: 0 auto;
+
+}
+.low_nav_left{
+	width: 65%;
+	height: 180px;
+	float: left;
+}
+.foot_img{
+	width: 35%;
+	height: 70px;
+	float: left;
+}
+.foot_nav{
+	width: 60%;
+	height: 30px;
+	float: right;
+	margin-top: 30px;
+}
+.foot_nav1{
+	width: 16%;
+	height: 30px;
+	font-size: 12px;
+	color: white;
+	float: right;
+	margin-left: 5px;
+	text-align: center;
+}
+.foot_nav1 a{
+	color: white;
+	text-decoration: none;
+}
+.foot_nav1 a:hover{
+	color: #ffc080;
+}
+.low_nav_right{
+	float: left;
+}
+.hr1{
+	clear: both;
+	width: 100%;
+	height: 15px;
+	border-bottom: 1px solid gainsboro;
+}
+.foot_text{
+	width: 100%;
+	text-align: center;
+	height: auto;
+}
+.foot_text p{
+	color: white;
+	font-size: 12px;
+	font-weight: 200;	
+}

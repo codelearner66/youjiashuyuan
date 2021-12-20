@@ -22,4 +22,20 @@
                 and M_Type=#{type} LIMIT #{start},#{rows}
 
     </select>
+    <select id="findByAllMagazine" resultType="com.shiyuan.entity.Magazines">
+        select a.M_Id as M_ID ,a.M_Name as M_Name  ,a.M_Price as M_Price ,b.T_Name as M_Type ,c.C_Name as M_Cycle, a.M_Introduce as M_Introduce,
+               a.M_ImgUrl as M_ImgUrl FROM magazines a ,m_type b,m_cycle c   where a.M_Type=b.T_Id and a.M_Cycle=c.C_Id
+                  LIMIT #{start},#{rows}
+    </select>
+    <select id="findTotalCountByAll" resultType="java.lang.Integer">
+        select count(*) from magazines
+    </select>
+    <select id="findTotalCountByCycle" resultType="java.lang.Integer">
+        select count(*) from magazines where M_Cycle = #{cycle}
+    </select>
+    <select id="findMagazineByCycle" resultType="com.shiyuan.entity.Magazines">
+        select a.M_Id as M_ID ,a.M_Name as M_Name  ,a.M_Price as M_Price ,b.T_Name as M_Type ,c.C_Name as M_Cycle, a.M_Introduce as M_Introduce,
+               a.M_ImgUrl as M_ImgUrl FROM magazines a ,m_type b,m_cycle c   where a.M_Type=b.T_Id and a.M_Cycle=c.C_Id
+           and M_Cycle=#{cycle} LIMIT #{start},#{rows}
+    </select>
 </mapper>

@@ -44,6 +44,7 @@ public class MainServlet extends HttpServlet {
                     String currentPage1 = req.getParameter("currentPage1");
                     String rows = req.getParameter("rows");
                     String type = req.getParameter("type");
+                    System.out.println(rows+"//////////////");
                     resp.getWriter().println(JSON.toJSONString(mainServiceImpl.findMagaByPage(currentPage1, rows, type)));
                 }
                 break;

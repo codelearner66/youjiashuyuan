@@ -66,6 +66,7 @@ public interface Back {
     public boolean setMagazine(Magazines magazines);
      boolean deleteMagazinesById(@Param("id") String id);
     boolean upDataBooks(Magazines magazines);
+    boolean upDataBookImg(@Param("imgurl") String imgurl,@Param("id") String id);
     /**
      *
      * @param TableName

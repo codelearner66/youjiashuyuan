@@ -33,8 +33,8 @@
             <script type="text/javascript">
                 var userLenth = "<%=(User)session.getAttribute("user")%>".length;
                 var sta = $(".indexrdg");
-                console.log(userLenth);
-                if (userLenth == 4) {  //用户未登录时
+                console.log("userLenth ="+userLenth);
+                if (userLenth === 4) {  //用户未登录时
                     $("#but1").show();
                     $("#but2").show();
                 } else {             //用户登录时
@@ -74,6 +74,7 @@
                 function toIogin(){
                     con=confirm("你确定要退出?"); //在页面上弹出对话框
                     if(con==true){
+
                         window.location.href="login.jsp";
                     }
                 }
@@ -82,7 +83,7 @@
                 }
                 function xianshi() {
                     //头像hover事件
-                    $(".user_imge ").mouseenter(function () {
+                    $(".user_imge ").click(function () {
                         $(".user_fromation").css("display", "block");
                     })
                     $(".user_fromation").mouseenter(function () {
@@ -100,10 +101,10 @@
         <div class="hotline">订阅热线：400 838 0788</div>
         <ul class="navlist">
             <li><a href="index.jsp">首页</a></li>
-            <li><a href="">杂志订阅</a></li>
-            <li><a href="">过刊/现货</a></li>
-            <li><a href="">图书</a></li>
-            <li><a href="">订单查询</a></li>
+            <li><a href="magazine.jsp">杂志订阅</a></li>
+            <li><a href="javascript:">过刊/现货</a></li>
+            <li><a href="javascript:">图书</a></li>
+            <li><a href="javascript:">订单查询</a></li>
             <li><a href="aboutbook.html">关于书院</a></li>
         </ul>
         <div class="cls"></div>
@@ -171,7 +172,7 @@
         </ul>
         <hr/>
         <div class="layui-tab-content" style="height: 100px;">
-            <div class="layui-tab-item layui-show" style="border:4px solid #ebcbbe;">
+            <div class="layui-tab-item layui-show" >
                 <ul id="main_ul" class="mainList"></ul>
                 <div class="fenye">
                     <ul id="fenye_ul" class="pagination"></ul>
@@ -179,9 +180,9 @@
             </div>
             <!--分页脚本 -->
             <script>
-                var currentPage1 = 1;
+                var currentPage1 = 1;//当前页数
                 var totalPage = 1;//最大分页数
-                var rows = 2;//每页数据
+                var rows = 18;//每页数据
                 var type = 1;
 
                 function bottnLi(type) {
@@ -192,20 +193,21 @@
                             action: "getMagazinesForPage",
                             type: type,
                             currentPage1,
-                            rows: 2
+                            rows: rows
                         },
                         success(data) {
                             var json = JSON.parse(data);
                             totalPage = json.totalPage;
                             rows = json.rows;
-                            let html = '<li><a href="javascript:">«</a></li>';
+                            console.log(totalPage);
+                            let html = '<li><a href="javascript:" onclick="" >«</a></li>';
                             buttonPage(1, type);
-                            console.log("type = " + type);
                             for (i = 1; i <= json.totalPage; i++) {
                                 html += "<li><a class='' onclick='buttonPage(" + i + "," + type + ")'  href='javascript:' >" + i +
-                                    "</a></li>"
+                                    "</a></li>";
+
                             }
-                            html += "<li><a href='javascript'>»</a></li>";
+                            html += "<li><a href='javascript' onclick='' >»</a></li>";
                             $('#fenye_ul').html(html);
                         }
                     })
@@ -219,7 +221,7 @@
                             action: "getMagazinesForPage",
                             type: 1,
                             currentPage1,
-                            rows: 2
+                            rows: rows
                         },
                         success(data) {
                             var json = JSON.parse(data);
@@ -227,6 +229,7 @@
                             rows = json.rows;
                             let html = '<li><a href="#">«</a></li>';
                             buttonPage(1, 1);
+                            console.log("tatolPage = "+totalPage);
                             for (i = 1; i <= json.totalPage; i++) {
                                 html += "<li><a class='' onclick='buttonPage(" + i + "," + 1 + ")'  href='javascript:' >" + i + "</a></li>"
                             }
@@ -245,7 +248,7 @@
                             action: "getMagazinesForPage",
                             type: type,
                             currentPage1: n,
-                            rows: 2
+                            rows: rows
                         },
                         success(data) {
                             var list = JSON.parse(data).list;

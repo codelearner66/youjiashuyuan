@@ -49,6 +49,9 @@
                         会员登陆
                     </div>
                     <div id="form_1" class="form_1">
+                        <%
+                            session.removeAttribute("user");
+                        %>
                         <form action="LoginServlet" method="post">
                             <input name="action" value="login" type="hidden">
                             <input id="act1" class="account" name="account" type="text" autocomplete="true"  required="required" placeholder="请输入帐号..." />

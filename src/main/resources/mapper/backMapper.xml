@@ -29,6 +29,12 @@
         </set>
         where M_Id=#{M_ID}
     </update>
+    <update id="upDataBookImg">
+        UPDATE magazines
+        set M_ImgUrl=#{imgurl}
+        where M_Id=#{id}
+          and M_ImgUrl='../img/zz20.jpg'
+    </update>
     <delete id="deleteMagazinesById">
         delete from magazines where M_Id=#{id}
     </delete>
